@@ -1,0 +1,2 @@
+# netcore-postgres
+sample netcore
