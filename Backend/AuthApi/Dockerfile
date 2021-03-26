@@ -3,7 +3,6 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Backend/AuthApi/AuthApi.csproj", "Backend/AuthApi/"]
@@ -17,9 +16,5 @@ RUN dotnet publish "AuthApi.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
-
-# ENV ASPNETCORE_URLS http://*:5000
-# EXPOSE 5000
-
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "AuthApi.dll"]
